@@ -20,19 +20,15 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
-        <x-jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+        <div class="min-h-screen bg-gray-900 text-gray-100">
 
             <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
+            <a href="{{ route('home') }}">
+                <header class="w-full h-16 p-4 pl-6">
+                    <span class="font-bold text-xl">Space Vote</span>
                 </header>
-            @endif
+            </a>
 
             <!-- Page Content -->
             <main>

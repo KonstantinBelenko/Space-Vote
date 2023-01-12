@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PollController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,15 @@ use App\Http\Controllers\HomeController;
 
 // Route get / to livewire home component
 Route::get('/', HomeController::class)->name('home');
+
+Route::get('/polls/{poll}', [PollController::class, 'show'])->name('polls.show');
+// Poll manipulation routes, only accessible to authenticated users
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/polls/create', [PollController::class, 'create'])->name('polls.create');
+    Route::post('/polls', [PollController::class, 'store'])->name('polls.store');
+    // Delete Poll
+    Route::delete('/polls/{poll}', [PollController::class, 'destroy'])->name('polls.destroy');
+});
 
 Route::middleware([
     'auth:sanctum',

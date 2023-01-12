@@ -17,8 +17,24 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
+
+        <div class="min-h-screen bg-gray-900 text-gray-100">
+
+            <!-- Page Heading -->
+            <a href="{{ route('home') }}">
+                <header class="w-full h-16 p-4 pl-6">
+                    <span class="font-bold text-xl">Space Vote</span>
+                </header>
+            </a>
+
+            <div class="font-sans text-gray-900 antialiased">
+                {{ $slot }}
+            </div>
+
+            @stack('modals')
+
+            @livewireScripts
+
         </div>
     </body>
 </html>
