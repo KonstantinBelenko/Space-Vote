@@ -10,10 +10,14 @@
         <script src="https://cdn.tailwindcss.com"></script>
 
     </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-900 sm:items-center py-4 sm:pt-0">
+    <body class="antialiased bg-gray-900 text-gray-100">
+
+        {{-- Header --}}
+        <header class="fixed w-full h-16 p-4 pl-6">
+            <span class="font-bold text-xl">Space Vote</span>
+            <div class="relative flex items-top justify-center min-h-screen items-center py-4 sm:pt-0">
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="fixed top-0 right-0 px-6 py-4 block">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-500 underline">Dashboard</a>
                     @else
@@ -25,13 +29,10 @@
                     @endauth
                 </div>
             @endif
+            </div>
+        </header>
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 text-gray-100">
-
-                {{-- Header --}}
-                <div class="font-bold">
-                    Space Vote
-                </div>
+            <div class="max-w-full mx-auto">
 
             </div>
         </div>
