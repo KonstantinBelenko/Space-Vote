@@ -28,6 +28,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Delete Poll
     Route::delete('/polls/{poll}', [PollController::class, 'destroy'])->name('polls.destroy');
+
+    // Vote
+    Route::post('/polls/{poll}/vote', [PollController::class, 'vote'])->name('polls.vote');
+
 });
 
 // This route is public and accessible to everyone

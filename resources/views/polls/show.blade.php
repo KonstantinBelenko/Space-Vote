@@ -9,8 +9,45 @@
         </div>
     @endif
 
+    {{-- Positive vs Negative votes circle chart --}}
+    @php
+        $positive_votes = $poll->positiveVotes();
+        $negative_votes = $poll->negativeVotes();
+        $total_votes = $positive_votes + $negative_votes;
+    @endphp
+    <div class="flex justify-center">
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+    </div>
+
+    <script>
+        var xValues = ["Yes", "No"];
+        var yValues = [{{$positive_votes}}, {{$negative_votes}}];
+        var barColors = [
+            "#0066ff",
+            "#ff0000",
+        ];
+
+        new Chart("myChart", {
+            type: "doughnut",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: false,
+                    text: "Voting chart"
+                }
+            }
+        });
+    </script>
+
+
     {{-- Display poll title --}}
-    <div class="max-w-2xl mx-auto mt-12 px-6 break-words">
+    <div class="max-w-2xl mx-auto mt-6 px-6 break-words">
         <p class="text-gray-400 font-mono text-xs">Poll type - {{ $poll->type }}</p>
         <h1 class="text-2xl font-bold text-gray-100">{{ $poll->title }}</h1>
     </div>
@@ -19,6 +56,35 @@
     <div class="max-w-2xl break-all mx-auto mt-4 px-6">
         <p class="text-gray-400 font-mono text-xs">Description</p>
         <p class="text-gray-100">{{ $poll->description }}</p>
+    </div>
+
+    {{-- Voting --}}
+    <div class="max-w-2xl break-all mx-auto mt-4 px-6 ">
+        <p class="text-gray-400 font-mono text-xs mb-2">Vote</p>
+        <div class="flex flex-row justify-between gap-4 text-xl">
+            @if(!$poll->hasVoted(auth()->user()))
+            <form method="POST" action="{{ route('polls.vote', $poll->id) }}" class="w-full">
+                @csrf
+                <input type="hidden" name="vote" value="1">
+                <input type="hidden" name="anonymous" value="1">
+                <button type="submit" class="font-bold bg-white text-gray-900 hover:bg-gray-900 border-2 border-white rounded-xl w-full py-2 hover:text-white transition-all duration-300">
+                    YES
+                </button>
+            </form>
+            <form method="POST" action="{{ route('polls.vote', $poll->id) }}" class="w-full">
+                @csrf
+                <input type="hidden" name="vote" value="0">
+                <input type="hidden" name="anonymous" value="1">
+                <button type="submit" class="font-bold bg-white text-gray-900 hover:bg-gray-900 border-2 border-white rounded-xl w-full py-2 hover:text-white transition-all duration-300">
+                    NO
+                </button>
+            </form>
+            @else
+                <div class="font-bold flex justify-center bg-gray-900 border-2 border-white rounded-xl w-full py-2 text-white transition-all duration-300">
+                    You have already voted: {{ $poll->userVote(auth()->user())->vote ? 'YES' : 'NO' }}
+                </div>
+            @endif
+        </div>
     </div>
 
     {{-- Button to delete poll if user is the creator --}}
@@ -82,6 +148,5 @@
         @endif
 
     @endif
-
 
 </x-guest-layout>

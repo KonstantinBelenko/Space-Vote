@@ -92,6 +92,28 @@ class PollController extends Controller
         //
     }
 
+    // Vote function
+    public function vote(Request $request, Poll $poll)
+    {
+
+        // Validate the request
+        $request->validate([
+            'vote' => 'required',
+        ]);
+
+        // Check if poll is open
+        if ($poll->is_open) {
+
+            // Check if user has voted
+            if (!$poll->hasVoted(auth()->user())) {
+                $poll->createVote(auth()->user(), $request->vote, $request->anonymous, $poll->id);
+            }
+        }
+
+        // Redirect to poll page
+        return redirect()->route('polls.show', $poll->id);
+    }
+
     /**
      * Update the specified resource in storage.
      *
