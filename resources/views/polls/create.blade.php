@@ -1,10 +1,14 @@
 <x-app-layout>
 
-    <form method="POST" action="{{ route('polls.store') }}" class="max-w-2xl mx-auto mt-16 px-6" >
+    <form method="POST" action="{{ route('polls.store') }}" class="max-w-2xl mx-auto mt-4 px-6" >
         @csrf
 
-        <div class="mb-4" x-data="{ count: 0 }" x-init="count = $refs.countme.value.length">
+        <div class="w-full min-h-16 bg-[#f50c00] px-4 py-2 rounded-md">
+            <span class="font-bold">⚠ Warning</span>
+            <p class="mt-1">You wouldn't be able to change this poll after you submit it.</p>
+        </div>
 
+        <div class="my-4" x-data="{ count: 0 }" x-init="count = $refs.countme.value.length">
             <label for="title" class="block text-gray-200 text-sm font-bold mb-2">Title</label>
             <input x-ref="countme" x-on:keyup="count = $refs.countme.value.length" required type="text" name="title" id="title" maxlength="42" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Title">
 
@@ -23,7 +27,7 @@
         </div>
 
         <div class="mb-4">
-            <label for="type" class="block text-gray-200 text-sm font-bold mb-2">Who can vote?</label>
+            <label for="type" class="block text-gray-200 text-sm font-bold mb-2">Who can See / Vote?</label>
 
             <div class="flex flex-col">
                 <div class="flex items center mb-2">

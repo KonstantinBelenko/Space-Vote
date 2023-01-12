@@ -29,38 +29,40 @@
 
                 {{-- Submit button --}}
                 <div class="flex justify-start">
-                    <button type="submit" class="bg-[#0066ff] w-full text-gray-200 text-xl font-bold px-4 py-2 rounded-xl hover:bg-[#cc0000] duration-10">
-                        STOP POLL
+                    <button type="submit" class="border-2 border-blue-500 hover:border-[#0066ff] w-full text-blue-500 hover:text-[#0066ff] text-xl px-4 py-2 rounded-xl transition-all duration-300">
+                        Stop poll
                     </button>
                 </div>
             </form>
 
             @if(Auth::user()->is_admin || Auth::user()->is_owner)
-                <p class="text-gray-400 font-mono text-xs mx-6 mt-4">Admin action</p>
                 <form method="POST" action="{{ route('polls.destroy', $poll->id) }}" class="max-w-2xl mx-auto mt-2 px-6" >
+                    <p class="text-gray-400 font-mono text-xs mx-auto mb-2 mt-4">Admin action</p>
                     @csrf
                     @method('DELETE')
 
                     {{-- Submit button --}}
                     <div class="flex justify-start">
-                        <button type="submit" class="bg-[#ff0000] w-full text-gray-200 text-xl font-bold px-4 py-2 rounded-xl hover:bg-[#cc0000] duration-10">
-                            DESTORY POLL
+                        <button type="submit" class="border-2 border-red-500 hover:border-[#FF0000] w-full text-red-500 hover:text-[#FF0000] text-xl  px-4 py-2 rounded-xl transition-all duration-300">
+                            Destroy poll
                         </button>
                     </div>
                 </form>
             @endif
 
-        @elseif(Auth::user()->id != $poll->user_id && (Auth::user()->is_admin || Auth::user()->is_owner))
-            <p class="text-gray-400 font-mono text-xs mx-6 mt-4">Admin actions</p>
+        @elseif(Auth::user()->is_admin || Auth::user()->is_owner)
+            <div class="max-w-2xl mx-auto">
+                <p class="text-gray-400 font-mono text-xs mx-6 mt-4 mb-2">Admin actions</p>
+            </div>
 
             @if($poll->is_open)
-                <form method="POST" action="{{ route('polls.stop', $poll->id) }}" class="max-w-2xl mx-auto mt-2 px-6" >
+                <form method="POST" action="{{ route('polls.stop', $poll->id) }}" class="max-w-2xl mx-auto px-6" >
                     @csrf
 
                     {{-- Submit button --}}
                     <div class="flex justify-start">
-                        <button type="submit" class="bg-[#0066ff] w-full text-gray-200 text-xl font-bold px-4 py-2 rounded-xl hover:bg-[#cc0000] duration-10">
-                            STOP POLL
+                        <button type="submit" class="border-2 border-blue-500 hover:border-[#0066ff] w-full text-blue-500 hover:text-[#0066ff] text-xl px-4 py-2 rounded-xl transition-all duration-300">
+                            Stop poll
                         </button>
                     </div>
                 </form>
@@ -72,8 +74,8 @@
 
                 {{-- Submit button --}}
                 <div class="flex justify-start">
-                    <button type="submit" class="bg-[#ff0000] w-full text-gray-200 text-xl font-bold px-4 py-2 rounded-xl hover:bg-[#cc0000] duration-10">
-                        DESTORY POLL
+                    <button type="submit" class="border-2 border-red-500 hover:border-[#FF0000] w-full text-red-500 hover:text-[#FF0000] text-xl  px-4 py-2 rounded-xl transition-all duration-300">
+                        Destroy poll
                     </button>
                 </div>
             </form>
