@@ -14,17 +14,17 @@
 
         {{-- Header --}}
         <header class="w-full h-16 p-4 pl-6">
-            <span class="font-bold text-xl">Space Vote</span>
+            <span class="font-bold text-xl">🌑 Space Vote</span>
             <div class="relative flex items-top justify-center items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="fixed top-0 right-0 px-6 py-4 block">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-500 underline">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-500 font-mono">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-500 underline">Log in</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-500 font-mono">Log in</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-500 underline">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-500 font-mono">Register</a>
                         @endif
                     @endauth
                 </div>

@@ -37,8 +37,8 @@
 
                 {{-- Quit account button --}}
                 <div class="mt-6 flex justify-start">
-                    <button type="submit" class="bg-[#ff0000] w-full text-gray-200 text-xl font-bold px-4 py-2 rounded-xl hover:bg-[#cc0000] duration-10">
-                        QUIT ACCOUNT
+                    <button type="submit" class="border-2 border-red-500 hover:border-[#FF0000] w-full text-red-500 hover:text-[#FF0000] text-xl  px-4 py-2 rounded-xl transition-all duration-300">
+                        Exit acccount
                     </button>
                 </div>
             </form>

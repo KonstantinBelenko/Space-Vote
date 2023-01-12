@@ -27,7 +27,7 @@
             <!-- Page Heading -->
             <a href="{{ route('home') }}">
                 <header class="w-full h-16 p-4 pl-6">
-                    <span class="font-bold text-xl">Space Vote</span>
+                    <span class="font-bold text-xl">🌑 Space Vote</span>
                 </header>
             </a>
 
