@@ -12,7 +12,7 @@
     {{-- Display poll title --}}
     <div class="max-w-2xl mx-auto mt-12 px-6 break-all">
         <p class="text-gray-400 font-mono text-xs">Poll type - {{ $poll->type }}</p>
-        <h1 class="text-3xl font-bold text-gray-100">{{ $poll->title }}</h1>
+        <h1 class="text-2xl font-bold text-gray-100">{{ $poll->title }}</h1>
     </div>
 
     {{-- Display poll description --}}
@@ -24,9 +24,8 @@
     {{-- Button to delete poll if user is the creator --}}
     @auth()
         @if (Auth::user()->id == $poll->user_id && $poll->is_open == true)
-            <form method="POST" action="{{ route('polls.destroy', $poll->id) }}" class="max-w-2xl mx-auto mt-6 px-6" >
+            <form method="POST" action="{{ route('polls.stop', $poll->id) }}" class="max-w-2xl mx-auto mt-6 px-6" >
                 @csrf
-                @method('DELETE')
 
                 {{-- Submit button --}}
                 <div class="flex justify-start">

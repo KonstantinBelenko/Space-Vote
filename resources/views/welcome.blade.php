@@ -43,7 +43,7 @@
                         @foreach ($polls as $poll)
                             <div class="bg-gray-800 min-h-[64px] mt-4 px-6 py-4 border-white border-2 rounded-md mx-6">
                                 <a href="{{ route('polls.show', $poll) }}">
-                                    <h2 class="text-2xl font-bold text-gray-100 truncate">{{ substr($poll->title, 0, 32) }}</h2>
+                                    <h2 class="text-xl font-bold text-gray-100 truncate">{{ substr($poll->title, 0, 32) }}</h2>
                                     <p class="mt-1 text-gray-300 break-all">{{ substr($poll->description, 0, 108) }}...</p>
                                 </a>
                             </div>

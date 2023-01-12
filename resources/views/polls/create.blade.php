@@ -34,7 +34,9 @@
                     @if (Auth::user()->is_approved)
                         <input type="radio" name="type" id="students" value="student" class="mr-2 ml-4">
                         <label for="students" class="text-gray-200 text-sm font-bold">Students</label>
-                    @elseif (Auth::user()->is_admin)
+                    @endif
+
+                    @if (Auth::user()->is_admin)
                         <input type="radio" name="type" id="admins" value="admin" class="mr-2 ml-4">
                         <label for="admins" class="text-gray-200 text-sm font-bold">Admins</label>
                     @endif
