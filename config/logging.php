@@ -6,6 +6,10 @@ use Monolog\Handler\SyslogUdpHandler;
 
 return [
 
+    'flare' => [
+        'driver' => 'flare',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Default Log Channel
