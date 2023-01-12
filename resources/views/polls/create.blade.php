@@ -3,28 +3,22 @@
     <form method="POST" action="{{ route('polls.store') }}" class="max-w-2xl mx-auto mt-16 px-6" >
         @csrf
 
-        <div class="mb-4" x-data="{
-            content: '',
-            limit: $el.dataset.limit,
-            get remaining() {
-                return this.limit - this.content.length
-            }
-        }" data-limit="32">
+        <div class="mb-4" x-data="{ count: 0 }" x-init="count = $refs.countme.value.length">
 
             <label for="title" class="block text-gray-200 text-sm font-bold mb-2">Title</label>
-            <input x-ref="content" x-model="content" required type="text" name="title" id="title" maxlength="32" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Title">
+            <input x-ref="countme" x-on:keyup="count = $refs.countme.value.length" required type="text" name="title" id="title" maxlength="32" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Title">
 
-            <span x-ref="remaining" class="font-mono font-xs text-gray-400">
-                <span x-text="remaining"></span> chars left
+            <span class="font-mono font-xs text-gray-400">
+                <span x-html="$refs.countme.maxLength - count"></span> chars left
             </span>
         </div>
 
-        <div class="mb-4" x-data="{ content: '', limit: $el.dataset.limit }" data-limit="255">
+        <div class="mb-4" x-data="{ count: 0 }" x-init="count = $refs.countme.value.length">
             <label for="description" class="block text-gray-200 text-sm font-bold mb-2">Description</label>
-            <textarea x-ref="content" x-model="content" maxlength="255" required name="description" id="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Description"></textarea>
+            <textarea x-ref="countme" x-on:keyup="count = $refs.countme.value.length" maxlength="255" required name="description" id="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Description"></textarea>
 
-            <span x-ref="remaining" class="font-mono font-xs text-gray-400">
-                <span x-text="limit - content.length"></span> chars left
+            <span class="font-mono font-xs text-gray-400">
+                <span x-html="$refs.countme.maxLength - count"></span> chars left
             </span>
         </div>
 
