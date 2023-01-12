@@ -45,7 +45,7 @@
                                 <a href="{{ route('polls.show', $poll) }}">
                                     <h2 class="text-xl font-bold text-gray-100 break-words">{{ substr($poll->title, 0, 42) }}</h2>
                                     <p class="mt-1 text-gray-300 break-all">{{ substr($poll->description, 0, 108) }}...</p>
-                                    <p class="mt-1 text-gray-400 font-mono text-xs">{{ $poll->created_at->diffForHumans() }} | {{ $poll->created_at }}</p>
+                                    <p class="mt-1 text-gray-400 font-mono text-xs" title="{{ $poll->created_at }}">{{ $poll->created_at->diffForHumans() }}</p>
                                 </a>
                             </div>
                         @endforeach

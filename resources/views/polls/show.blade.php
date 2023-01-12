@@ -54,7 +54,7 @@
 
         <p class="flex justify-between text-gray-400 font-mono text-xs">
             <span>Poll type - {{ $poll->type }}</span>
-            <span>{{ $poll->created_at->diffForHumans() }} | {{ $poll->created_at }}</span>
+            <span title="{{ $poll->created_at }}">{{ $poll->created_at->diffForHumans() }}</span>
         </p>
 
         <h1 class="text-2xl font-bold text-gray-100">{{ $poll->title }}</h1>
