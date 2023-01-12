@@ -89,7 +89,7 @@
             </form>
             @else
                 <div class="font-bold flex justify-center bg-gray-900 border-2 border-white rounded-xl w-full py-2 px-1 text-white transition-all duration-300">
-                    You have already voted: {{ $poll->userVote(auth()->user())->vote ? 'YES' : 'NO' }}
+                    You voted: {{ $poll->userVote(auth()->user())->vote ? 'YES' : 'NO' }}
                 </div>
             @endif
         </div>
