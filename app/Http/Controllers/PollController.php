@@ -112,7 +112,19 @@ class PollController extends Controller
      */
     public function destroy($id)
     {
+        // Delete poll
+        Poll::destroy($id);
+
+        // Redirect to home
+        return redirect()->route('home');
+    }
+
+    public function stop($id)
+    {
         // Change is_open to false
         Poll::where('id', $id)->update(['is_open' => false]);
+
+        // Redirect to poll
+        return redirect()->route('polls.show', $id);
     }
 }

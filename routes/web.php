@@ -22,6 +22,10 @@ Route::get('/', HomeController::class)->name('home');
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/polls/create', [PollController::class, 'create'])->name('polls.create');
     Route::post('/polls', [PollController::class, 'store'])->name('polls.store');
+
+    // Stop poll
+    Route::post('/polls/{poll}/stop', [PollController::class, 'stop'])->name('polls.stop');
+
     // Delete Poll
     Route::delete('/polls/{poll}', [PollController::class, 'destroy'])->name('polls.destroy');
 });
