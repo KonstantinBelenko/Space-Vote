@@ -10,7 +10,7 @@
     @endif
 
     {{-- Display poll title --}}
-    <div class="max-w-2xl mx-auto mt-12 px-6 break-all">
+    <div class="max-w-2xl mx-auto mt-12 px-6 break-words">
         <p class="text-gray-400 font-mono text-xs">Poll type - {{ $poll->type }}</p>
         <h1 class="text-2xl font-bold text-gray-100">{{ $poll->title }}</h1>
     </div>
