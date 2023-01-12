@@ -6,7 +6,7 @@
         <div class="mb-4" x-data="{ count: 0 }" x-init="count = $refs.countme.value.length">
 
             <label for="title" class="block text-gray-200 text-sm font-bold mb-2">Title</label>
-            <input x-ref="countme" x-on:keyup="count = $refs.countme.value.length" required type="text" name="title" id="title" maxlength="32" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Title">
+            <input x-ref="countme" x-on:keyup="count = $refs.countme.value.length" required type="text" name="title" id="title" maxlength="42" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Title">
 
             <span class="font-mono font-xs text-gray-400">
                 <span x-html="$refs.countme.maxLength - count"></span> chars left

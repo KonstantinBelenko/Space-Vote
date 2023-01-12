@@ -38,7 +38,7 @@ class PollController extends Controller
 
         // Validate the request
         $request->validate([
-            'title' => 'required|max:32',
+            'title' => 'required|max:42',
             'description' => 'required|max:255',
             'type' => 'required',
         ]);
