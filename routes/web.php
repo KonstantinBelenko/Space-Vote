@@ -15,7 +15,7 @@ use App\Http\Controllers\HomeController;
 */
 
 // Route get / to livewire home component
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
 Route::middleware([
     'auth:sanctum',
