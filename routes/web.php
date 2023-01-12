@@ -18,7 +18,6 @@ use App\Http\Controllers\PollController;
 // Route get / to livewire home component
 Route::get('/', HomeController::class)->name('home');
 
-Route::get('/polls/{poll}', [PollController::class, 'show'])->name('polls.show');
 // Poll manipulation routes, only accessible to authenticated users
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/polls/create', [PollController::class, 'create'])->name('polls.create');
@@ -26,6 +25,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Delete Poll
     Route::delete('/polls/{poll}', [PollController::class, 'destroy'])->name('polls.destroy');
 });
+
+// This route is public and accessible to everyone
+Route::get('/polls/{poll}', [PollController::class, 'show'])->name('polls.show');
 
 Route::middleware([
     'auth:sanctum',
