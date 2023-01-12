@@ -14,16 +14,16 @@
 
                 @if(auth()->user()->is_owner)
                 <div class="font-mono text-gray-400 text-xs">Account status</div>
-                <p class="font-bold text-2xl">🎉 Owner</p>
+                <p class="font-bold text-xl">🎉 Owner</p>
                 @elseif(auth()->user()->is_admin)
                 <div class="font-mono text-gray-400 text-xs">Account status</div>
-                <p class="font-bold text-2xl">🎫 Admin</p>
+                <p class="font-bold text-xl">🎫 Admin</p>
                 @else
                 <div class="font-mono text-gray-400 text-xs">Account status</div>
-                <p class="font-bold text-2xl">{{ auth()->user()->is_approved ? '✅ Approved' : '⏱Pending Approval' }}</p>
+                <p class="font-bold text-xl">{{ auth()->user()->is_approved ? '✅ Approved' : '⏱Pending Approval' }}</p>
                 @endif
 
-                <div class="flex flex-row justify-start gap-6">
+                <div class="flex flex-column gap-6">
                     <div class="mt-6">
                         <div class="font-mono text-gray-400 text-xs">Email</div>
                         <p class="text-xl">{{ auth()->user()->email }}</p>
