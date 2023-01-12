@@ -15,9 +15,12 @@
         $negative_votes = $poll->negativeVotes();
         $total_votes = $positive_votes + $negative_votes;
     @endphp
+
+    @if($total_votes > 0)
     <div class="flex justify-center">
-        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+        <canvas id="myChart" style="width:100%;max-width:300px"></canvas>
     </div>
+    @endif
 
     <script>
         var xValues = ["Yes", "No"];
@@ -53,7 +56,7 @@
     </div>
 
     {{-- Display poll description --}}
-    <div class="max-w-2xl break-all mx-auto mt-4 px-6">
+    <div class="max-w-2xl break-all mx-auto mt-4 px-6 break-words">
         <p class="text-gray-400 font-mono text-xs">Description</p>
         <p class="text-gray-100">{{ $poll->description }}</p>
     </div>
@@ -80,7 +83,7 @@
                 </button>
             </form>
             @else
-                <div class="font-bold flex justify-center bg-gray-900 border-2 border-white rounded-xl w-full py-2 text-white transition-all duration-300">
+                <div class="font-bold flex justify-center bg-gray-900 border-2 border-white rounded-xl w-full py-2 px-1 text-white transition-all duration-300">
                     You have already voted: {{ $poll->userVote(auth()->user())->vote ? 'YES' : 'NO' }}
                 </div>
             @endif
