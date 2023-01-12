@@ -51,7 +51,12 @@
 
     {{-- Display poll title --}}
     <div class="max-w-2xl mx-auto mt-6 px-6 break-words">
-        <p class="text-gray-400 font-mono text-xs">Poll type - {{ $poll->type }}</p>
+
+        <p class="flex justify-between text-gray-400 font-mono text-xs">
+            <span>Poll type - {{ $poll->type }}</span>
+            <span>{{ $poll->created_at->diffForHumans() }} | {{ $poll->created_at }}</span>
+        </p>
+
         <h1 class="text-2xl font-bold text-gray-100">{{ $poll->title }}</h1>
     </div>
 
