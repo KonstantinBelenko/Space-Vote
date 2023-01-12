@@ -23,7 +23,7 @@
                 <p class="font-bold text-xl">{{ auth()->user()->is_approved ? '✅ Approved' : '⏱Pending Approval' }}</p>
                 @endif
 
-                <div class="flex flex-col">
+                <div class="flex flex-col break-all">
                     <div class="mt-6">
                         <div class="font-mono text-gray-400 text-xs">Email</div>
                         <p class="text-xl">{{ auth()->user()->email }}</p>
