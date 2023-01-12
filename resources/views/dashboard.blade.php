@@ -12,8 +12,31 @@
             <form method="POST" action="{{ route('logout') }}" class="max-w-2xl mx-auto px-6" >
                 @csrf
 
-                {{-- Submit button --}}
-                <div class="flex justify-start">
+                @if(auth()->user()->is_owner)
+                <div class="font-mono text-gray-400 text-xs">Account status</div>
+                <p class="font-bold text-2xl">🎉 Owner</p>
+                @elseif(auth()->user()->is_admin)
+                <div class="font-mono text-gray-400 text-xs">Account status</div>
+                <p class="font-bold text-2xl">🎫 Admin</p>
+                @else
+                <div class="font-mono text-gray-400 text-xs">Account status</div>
+                <p class="font-bold text-2xl">{{ auth()->user()->is_approved ? '✅ Approved' : '⏱Pending Approval' }}</p>
+                @endif
+
+                <div class="flex flex-row justify-start gap-6">
+                    <div class="mt-6">
+                        <div class="font-mono text-gray-400 text-xs">Email</div>
+                        <p class="text-xl">{{ auth()->user()->email }}</p>
+                    </div>
+
+                    <div class="mt-6">
+                        <div class="font-mono text-gray-400 text-xs">Name</div>
+                        <p class="text-xl">{{ auth()->user()->name }}</p>
+                    </div>
+                </div>
+
+                {{-- Quit account button --}}
+                <div class="mt-6 flex justify-start">
                     <button type="submit" class="bg-[#ff0000] w-full text-gray-200 text-xl font-bold px-4 py-2 rounded-xl hover:bg-[#cc0000] duration-10">
                         QUIT ACCOUNT
                     </button>
