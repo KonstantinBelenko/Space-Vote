@@ -1,0 +1,15 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Update on server
+      run: ssh -i ${{ secrets.SSH_PRIVATE_KEY }} root@${{ secrets.SSH_SERVER_ADDRESS }} /root/update.sh
