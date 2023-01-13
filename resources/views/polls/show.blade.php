@@ -69,27 +69,22 @@
     {{-- Voting --}}
     <div class="max-w-2xl break-all mx-auto mt-4 px-6 ">
         <p class="text-gray-400 font-mono text-xs mb-2">Vote</p>
-        <div class="flex flex-row justify-between gap-4 text-xl">
+        <div class="flex flex-col justify-between gap-4 text-xl text-white">
             @if(!$poll->hasVoted(auth()->user()))
-            <form method="POST" action="{{ route('polls.vote', $poll->id) }}" class="w-full">
-                @csrf
-                <input type="hidden" name="vote" value="1">
-                <input type="hidden" name="anonymous" value="1">
-                <button type="submit" class="font-bold bg-white text-gray-900 hover:bg-gray-900 border-2 border-white rounded-xl w-full py-2 hover:text-white transition-all duration-300">
-                    YES
-                </button>
-            </form>
-            <form method="POST" action="{{ route('polls.vote', $poll->id) }}" class="w-full">
-                @csrf
-                <input type="hidden" name="vote" value="0">
-                <input type="hidden" name="anonymous" value="1">
-                <button type="submit" class="font-bold bg-white text-gray-900 hover:bg-gray-900 border-2 border-white rounded-xl w-full py-2 hover:text-white transition-all duration-300">
-                    NO
-                </button>
-            </form>
+                    @foreach($poll->answers()->get() as $key => $answer)
+                    <form method="POST" action="{{ route('polls.vote', $poll->id) }}" class="w-full">
+                        @csrf
+                        <input type="hidden" name="vote" value="{{ $answer->id }}">
+                        <input type="hidden" name="anonymous" value="1">
+                        <button type="submit" class="font-bold bg-white text-gray-900 hover:bg-gray-900 border-2 border-white rounded-xl w-full py-2 hover:text-white transition-all duration-300">
+                            {{ $answer->text }}
+                        </button>
+                    </form>
+                @endforeach
+
             @else
                 <div class="font-bold flex justify-center bg-gray-900 border-2 border-white rounded-xl w-full py-2 px-1 text-white transition-all duration-300">
-                    You voted: {{ $poll->userVote(auth()->user())->vote ? 'YES' : 'NO' }}
+                    You voted: {{ $poll->userAnswer(auth()->user())->text}}
                 </div>
             @endif
         </div>
