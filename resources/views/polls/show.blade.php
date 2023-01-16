@@ -10,7 +10,7 @@
     @endif
 
     @if( $poll->nVoted() > 0 )
-    <div class="flex justify-center px-6 mx-auto">
+    <div class="flex justify-center px-6 mx-auto max-w-md">
         <canvas id="myChart" style="width: 100%;"></canvas>
     </div>
     @endif
