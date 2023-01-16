@@ -9,16 +9,9 @@
         </div>
     @endif
 
-    {{-- Positive vs Negative votes circle chart --}}
-    @php
-        $positive_votes = $poll->positiveVotes();
-        $negative_votes = $poll->negativeVotes();
-        $total_votes = $positive_votes + $negative_votes;
-    @endphp
-
-    @if($total_votes > 0)
+    @if( $poll->nVoted() > 0 )
     <div class="flex justify-center">
-        <canvas id="myChart" style="width:100%;max-width:300px"></canvas>
+        <canvas id="myChart" style="max-width: 500px"></canvas>
     </div>
     @endif
 

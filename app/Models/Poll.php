@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Vote;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-// Import answer model
+// Import models
+use App\Models\Vote;
 use App\Models\Answer;
 
 class Poll extends Model
@@ -59,19 +59,10 @@ class Poll extends Model
 
     }
 
-    public function positiveVotes()
+    // Get n poll votes
+    public function nVoted()
     {
-        return Vote::where('poll_id', $this->id)->where('vote', true)->count();
-    }
-
-    public function negativeVotes()
-    {
-        return Vote::where('poll_id', $this->id)->where('vote', false)->count();
-    }
-
-    private function votes()
-    {
-        return $this->hasMany(Vote::class);
+        return Vote::where('poll_id', $this->id)->count();
     }
 
     public function answers()
@@ -85,7 +76,7 @@ class Poll extends Model
             return false;
         }
 
-        $this->votes()->create([
+        Vote::create([
             'user_id' => $user->id,
             'poll_id' => $poll_id,
             'vote' => $vote,
