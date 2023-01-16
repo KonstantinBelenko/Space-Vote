@@ -11,7 +11,7 @@
 
     @if( $poll->nVoted() > 0 )
     <div class="flex justify-center">
-        <canvas id="myChart" style="max-width: 500px"></canvas>
+        <canvas id="myChart" style="max-height: 250px;"></canvas>
     </div>
     @endif
 
@@ -34,8 +34,6 @@
         // php $answers to js array, include answer->nVotes() function
         var answers = @json($poll->answers);
 
-        console.log(answers);
-
         var xValues = answers.map(function(answer) {
             return answer.text;
         });
@@ -52,6 +50,7 @@
 
         new Chart("myChart", {
             type: "pie",
+            responsive: true,
             data: {
                 labels: xValues,
                 datasets: [{
@@ -63,7 +62,10 @@
                 title: {
                     display: false,
                     text: "Voting chart"
-                }
+                },
+                legend: {
+                    position: 'bottom'
+                },
             }
         });
     </script>
