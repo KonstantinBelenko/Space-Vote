@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Poll;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class CreatePoll extends Component
 {
@@ -59,6 +60,7 @@ class CreatePoll extends Component
             'type' => $this->type,
             'is_open' => true,
             'user_id' => auth()->user()->id,
+            'uuid' => Str::uuid(),
         ]);
 
         // Save poll
@@ -76,7 +78,7 @@ class CreatePoll extends Component
         }
 
         // Redirect to the poll page by poll id
-        return redirect()->route('polls.show', $poll->id);
+        return redirect()->route('polls.show', $poll->uuid);
     }
 
     public function render()
