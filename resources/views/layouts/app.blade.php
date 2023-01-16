@@ -27,7 +27,7 @@
             <!-- Page Heading -->
             <a href="{{ route('home') }}">
                 <header class="w-full h-16 p-4 pl-6">
-                    <span class="font-bold text-xl">🌑 Space Vote</span>
+                    <span class="fixed font-bold text-xl">🌑 Space Vote</span>
                     <div class="relative flex items-top justify-center items-center py-4 sm:pt-0">
                         @if (Route::has('login'))
                             <div class="fixed top-0 right-0 px-6 py-4 block">
