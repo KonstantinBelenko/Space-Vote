@@ -11,7 +11,7 @@
 
     @if( $poll->nVoted() > 0 )
     <div class="flex justify-center">
-        <canvas id="myChart" style="max-height: 250px;"></canvas>
+        <canvas id="myChart" style="height: 250px;"></canvas>
     </div>
     @endif
 
@@ -64,7 +64,8 @@
                     text: "Voting chart"
                 },
                 legend: {
-                    position: 'bottom'
+                    position: 'bottom',
+                    responsive: false,
                 },
             }
         });
