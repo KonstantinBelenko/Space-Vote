@@ -96,7 +96,7 @@
             @if(!$poll->hasVoted(auth()->user()))
                 <p class="text-gray-400 font-mono text-xs mb-2">Vote</p>
                 @foreach($poll->answers()->get() as $key => $answer)
-                    <form method="POST" action="{{ route('polls.vote', $poll->id) }}" class="w-full mb-4">
+                    <form method="POST" action="{{ route('polls.vote', $poll->uuid) }}" class="w-full mb-4">
                         @csrf
                         <input type="hidden" name="vote" value="{{ $answer->id }}">
                         <input type="hidden" name="anonymous" value="1">
@@ -118,7 +118,7 @@
     {{-- Button to delete poll if user is the creator --}}
     @auth()
         @if (Auth::user()->id == $poll->user_id && $poll->is_open == true)
-            <form method="POST" action="{{ route('polls.stop', $poll->id) }}" class="max-w-2xl mx-auto mt-6 px-6" >
+            <form method="POST" action="{{ route('polls.stop', $poll->uuid) }}" class="max-w-2xl mx-auto mt-6 px-6" >
                 @csrf
 
                 {{-- Submit button --}}
@@ -130,7 +130,7 @@
             </form>
 
             @if(Auth::user()->is_admin || Auth::user()->is_owner)
-                <form method="POST" action="{{ route('polls.destroy', $poll->id) }}" class="max-w-2xl mx-auto mt-2 px-6" >
+                <form method="POST" action="{{ route('polls.destroy', $poll->uuid) }}" class="max-w-2xl mx-auto mt-2 px-6" >
                     <p class="text-gray-400 font-mono text-xs mx-auto mb-2 mt-4">Admin action</p>
                     @csrf
                     @method('DELETE')
@@ -150,7 +150,7 @@
             </div>
 
             @if($poll->is_open)
-                <form method="POST" action="{{ route('polls.stop', $poll->id) }}" class="max-w-2xl mx-auto px-6" >
+                <form method="POST" action="{{ route('polls.stop', $poll->uuid) }}" class="max-w-2xl mx-auto px-6" >
                     @csrf
 
                     {{-- Submit button --}}
@@ -162,7 +162,7 @@
                 </form>
             @endif
 
-            <form method="POST" action="{{ route('polls.destroy', $poll->id) }}" class="max-w-2xl mx-auto mt-2 px-6" >
+            <form method="POST" action="{{ route('polls.destroy', $poll->uuid) }}" class="max-w-2xl mx-auto mt-2 px-6" >
                 @csrf
                 @method('DELETE')
 

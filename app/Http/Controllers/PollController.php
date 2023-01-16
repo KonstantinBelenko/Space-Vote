@@ -65,12 +65,13 @@ class PollController extends Controller
      * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(int $id)
+    public function show(string $poll_uuid)
     {
+
         // Check if poll exists
-        if (Poll::where('id', $id)->exists()) {
+        if (Poll::where('uuid', $poll_uuid)->exists()) {
             // Get poll
-            $poll = Poll::find($id);
+            $poll = Poll::where('uuid', $poll_uuid)->first();
 
             // Return view with poll
             return view('polls.show', compact('poll'));
@@ -93,8 +94,17 @@ class PollController extends Controller
     }
 
     // Vote function
-    public function vote(Request $request, Poll $poll)
+    public function vote(Request $request, string $poll_uuid)
     {
+
+        // Check if poll exists
+        if (!Poll::where('uuid', $poll_uuid)->exists()) {
+            // Return 404
+            abort(404);
+        }
+
+        // Get poll
+        $poll = Poll::where('uuid', $poll_uuid)->first();
 
         // Validate the request
         $request->validate([
@@ -111,7 +121,7 @@ class PollController extends Controller
         }
 
         // Redirect to poll page
-        return redirect()->route('polls.show', $poll->id);
+        return redirect()->route('polls.show', $poll->uuid);
     }
 
     /**
@@ -130,23 +140,39 @@ class PollController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(string $uuid)
     {
+
+        // Check if poll exists
+        if (!Poll::where('uuid', $uuid)->exists()) {
+            // Return 404
+            abort(404);
+        }
+
+        // Get poll
+        $poll = Poll::where('uuid', $uuid)->first();
+
         // Delete poll
-        Poll::destroy($id);
+        Poll::destroy($poll->id);
 
         // Redirect to home
         return redirect()->route('home');
     }
 
-    public function stop($id)
+    public function stop(string $uuid)
     {
+        // Check if poll exists
+        if (!Poll::where('uuid', $uuid)->exists()) {
+            // Return 404
+            abort(404);
+        }
+
         // Change is_open to false
-        Poll::where('id', $id)->update(['is_open' => false]);
+        Poll::where('uuid', $uuid)->update(['is_open' => false]);
 
         // Redirect to poll
-        return redirect()->route('polls.show', $id);
+        return redirect()->route('polls.show', $uuid);
     }
 }

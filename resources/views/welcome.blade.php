@@ -25,7 +25,7 @@
                     @if (count($polls) > 0)
                         @foreach ($polls as $poll)
                             <div class="bg-gray-800 hover:bg-gray-700 transition-all duration-300 min-h-[64px] mt-4 px-6 py-4 border-white border-2 rounded-md mx-6">
-                                <a href="{{ route('polls.show', $poll) }}">
+                                <a href="{{ route('polls.show', $poll->uuid) }}">
                                     <h2 class="text-xl font-bold text-gray-100 break-words">{{ substr($poll->title, 0, 42) }}</h2>
                                     <p class="mt-1 text-gray-300 break-all">{{ substr($poll->description, 0, 108) }}...</p>
                                     <p class="mt-1 text-gray-400 font-mono text-xs" title="{{ $poll->created_at }}">{{ $poll->created_at->diffForHumans() }}</p>

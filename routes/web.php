@@ -35,7 +35,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 });
 
 // This route is public and accessible to everyone
-Route::get('/polls/{poll}', [PollController::class, 'show'])->name('polls.show');
+Route::get('/polls/{poll_uuid}', [PollController::class, 'show'])->name('polls.show');
 
 Route::middleware([
     'auth:sanctum',
