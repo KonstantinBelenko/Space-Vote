@@ -10,8 +10,8 @@
     @endif
 
     @if( $poll->nVoted() > 0 )
-    <div class="flex justify-center">
-        <canvas id="myChart" style="min-height: 190px; max-height: 190px;"></canvas>
+    <div class="flex justify-center px-6 mx-auto">
+        <canvas id="myChart" style="width: 100%;"></canvas>
     </div>
     @endif
 
@@ -49,7 +49,7 @@
         });
 
         new Chart("myChart", {
-            type: "pie",
+            type: "bar",
             responsive: true,
             data: {
                 labels: xValues,
@@ -64,8 +64,9 @@
                     text: "Voting chart"
                 },
                 legend: {
-                    position: 'bottom',
+                    position: 'right',
                     responsive: false,
+                    display: false,
                 },
             }
         });
@@ -90,12 +91,12 @@
     </div>
 
     {{-- Voting --}}
-    <div class="max-w-2xl break-all mx-auto mt-4 px-6 ">
-        <p class="text-gray-400 font-mono text-xs mb-2">Vote</p>
-        <div class="flex flex-col justify-between gap-4 text-xl text-white">
+    <div class="max-w-2xl break-all mx-auto mt-4 mb-8 px-6">
+        <div class="flex flex-col justify-between text-xl text-white">
             @if(!$poll->hasVoted(auth()->user()))
-                    @foreach($poll->answers()->get() as $key => $answer)
-                    <form method="POST" action="{{ route('polls.vote', $poll->id) }}" class="w-full">
+                <p class="text-gray-400 font-mono text-xs mb-2">Vote</p>
+                @foreach($poll->answers()->get() as $key => $answer)
+                    <form method="POST" action="{{ route('polls.vote', $poll->id) }}" class="w-full mb-4">
                         @csrf
                         <input type="hidden" name="vote" value="{{ $answer->id }}">
                         <input type="hidden" name="anonymous" value="1">
@@ -106,8 +107,9 @@
                 @endforeach
 
             @else
-                <div class="font-bold flex justify-center bg-gray-900 border-2 border-white rounded-xl w-full py-2 px-1 text-white transition-all duration-300">
-                    You voted: {{ $poll->userAnswer(auth()->user())->text}}
+                <p class="text-gray-400 font-mono text-xs mb-2">You voted</p>
+                <div class="font-xl flex justify-center bg-gray-900 border-2 border-white rounded-xl w-full py-2 px-1 text-white transition-all duration-300">
+                    {{ $poll->userAnswer(auth()->user())->text}}
                 </div>
             @endif
         </div>
