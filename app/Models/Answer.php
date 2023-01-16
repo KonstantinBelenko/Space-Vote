@@ -13,4 +13,18 @@ class Answer extends Model
         'text',
         'poll_id',
     ];
+
+    protected $appends = [
+        'votes',
+    ];
+
+    public function nVoted()
+    {
+        return Vote::where('vote', $this->id)->count();
+    }
+
+    public function getVotesAttribute()
+    {
+        return $this->nVoted();
+    }
 }

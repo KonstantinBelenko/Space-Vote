@@ -23,15 +23,42 @@
     @endif
 
     <script>
-        var xValues = ["Yes", "No"];
-        var yValues = [{{$positive_votes}}, {{$negative_votes}}];
-        var barColors = [
-            "#0066ff",
-            "#ff0000",
-        ];
+
+        function getColor(str){
+            // Generate color from string
+            var hash = 0;
+            for (var i = 0; i < str.length; i++) {
+                hash = str.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            var color = '#';
+            for (var i = 0; i < 3; i++) {
+                var value = (hash >> (i * 8)) & 0xFF;
+                color += ('00' + value.toString(16)).substr(-2);
+            }
+            return color;
+        }
+
+        // php $answers to js array, include answer->nVotes() function
+        var answers = @json($poll->answers);
+
+        console.log(answers);
+
+        var xValues = answers.map(function(answer) {
+            return answer.text;
+        });
+
+        // yValues = map answers to votes
+        var yValues = answers.map(function(answer) {
+            return answer.votes;
+        });
+
+        // bar colors = map answers to random colors
+        var barColors = answers.map(function(answer) {
+            return getColor(answer.text);
+        });
 
         new Chart("myChart", {
-            type: "doughnut",
+            type: "pie",
             data: {
                 labels: xValues,
                 datasets: [{
