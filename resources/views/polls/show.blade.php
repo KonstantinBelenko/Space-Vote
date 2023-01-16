@@ -11,7 +11,7 @@
 
     @if( $poll->nVoted() > 0 )
     <div class="flex justify-center">
-        <canvas id="myChart" style="height: 250px;"></canvas>
+        <canvas id="myChart" style="min-height: 190px; max-height: 190px;"></canvas>
     </div>
     @endif
 
