@@ -63,11 +63,6 @@
             @foreach($answers as $key => $answer)
                 <div class="mt-4 flex flex-row gap-4 items-center justify-start">
 
-                    {{-- Show delete button if number of optional answers > 2 (required minimum) --}}
-                    @if(count($answers) > 2)
-                        <button wire:click="removeAnswer({{ $key }})" class="text-xl">🗑</button>
-                    @endif
-
                     <input
                         wire:model="answers.{{$key}}.text"
                         type="text"
@@ -82,7 +77,13 @@
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         placeholder="Answer {{ $key + 1 }}"
                     >
+
+                    {{-- Show delete button if number of optional answers > 2 (required minimum) --}}
+                    @if(count($answers) > 2)
+                        <button wire:click="removeAnswer({{ $key }})" class="text-xl">🗑</button>
+                    @endif
                 </div>
+
             @endforeach
         </div>
 
