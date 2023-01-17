@@ -39,7 +39,7 @@
             });
 
             new Chart("myChart", {
-                type: "bar",
+                type: "pie",
                 responsive: true,
                 data: {
                     labels: xValues,
@@ -56,7 +56,7 @@
                     legend: {
                         position: 'right',
                         responsive: false,
-                        display: false,
+                        display: true,
                     },
                 }
             });
