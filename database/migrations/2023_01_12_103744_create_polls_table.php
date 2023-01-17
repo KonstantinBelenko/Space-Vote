@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('title');
             $table->text('description');
-            $table->enum('type', ['public', 'student', 'admin']);
+            $table->string('type')->default('public');
             $table->boolean('is_open')->default(true);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });

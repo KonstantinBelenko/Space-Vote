@@ -32,16 +32,19 @@
             <div class="flex flex-col">
                 <div class="flex items center mb-2">
 
-                    <input checked="checked" type="radio" name="type" id="public" value="public" class="mr-2">
+                    <input wire:model="type" type="radio" name="type" id="anarchy" value="anarchy" class="mr-2">
+                    <label for="anarchy" class="text-gray-200 text-sm font-bold">Anarchy</label>
+
+                    <input wire:model="type" type="radio" name="type" id="public" value="public" class="mr-2 ml-4">
                     <label for="public" class="text-gray-200 text-sm font-bold">Public</label>
 
                     @if (Auth::user()->is_approved)
-                        <input type="radio" name="type" id="students" value="student" class="mr-2 ml-4">
+                        <input wire:model="type" type="radio" name="type" id="students" value="student" class="mr-2 ml-4">
                         <label for="students" class="text-gray-200 text-sm font-bold">Students</label>
                     @endif
 
                     @if (Auth::user()->is_admin)
-                        <input type="radio" name="type" id="admins" value="admin" class="mr-2 ml-4">
+                        <input wire:model="type" type="radio" name="type" id="admins" value="admin" class="mr-2 ml-4">
                         <label for="admins" class="text-gray-200 text-sm font-bold">Admins</label>
                     @endif
 

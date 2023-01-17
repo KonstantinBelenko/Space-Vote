@@ -11,7 +11,7 @@ class CreatePoll extends Component
 
     public $title = '';
     public $description = '';
-    public $type = 'public';
+    public $type = 'anarchy';
     public $answers = [
         [
             'text' => 'Yes',
