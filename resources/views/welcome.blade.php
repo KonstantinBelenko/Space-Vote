@@ -50,7 +50,7 @@
         @else
             @if (Route::has('register'))
                 <a href="{{ route('register') }}" class="fixed bg-[#0066ff] min-w-[128px] text-gray-200 text-xl font-bold px-6 py-4 right-8 bottom-8 rounded-xl hover:scale-110 duration-100">
-                    Register To Vote
+                    Register To Make a Poll
                 </a>
             @endif
         @endif
