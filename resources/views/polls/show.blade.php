@@ -107,10 +107,31 @@
                 @endforeach
 
             @else
-                <p class="text-gray-400 font-mono text-xs mb-2">You voted</p>
+                <p class="text-gray-400 font-mono text-xs mb-2">You already voted</p>
+                @foreach($poll->answers()->get() as $key => $answer)
+                    <div class="w-full mb-4">
+
+                        {{-- Voting blocks (highting the one the user voted for --}}
+                        @if($answer->text == $poll->userAnswer(auth()->user())->text)
+
+                            <button class="font-bold bg-[#0066ff] border-2 border-white rounded-xl w-full py-2 text-white transition-all duration-300">
+                                {{ $answer->text }}
+                            </button>
+
+                        @else
+
+                            <button class="font-bold bg-gray-900 border-2 border-white rounded-xl w-full py-2 text-white transition-all duration-300">
+                                {{ $answer->text }}
+                            </button>
+
+                        @endif
+
+                    </div>
+                @endforeach
+                {{--<p class="text-gray-400 font-mono text-xs mb-2">You voted</p>
                 <div class="font-xl flex justify-center bg-gray-900 border-2 border-white rounded-xl w-full py-2 px-1 text-white transition-all duration-300">
                     {{ $poll->userAnswer(auth()->user())->text}}
-                </div>
+                </div>--}}
             @endif
         </div>
     </div>
