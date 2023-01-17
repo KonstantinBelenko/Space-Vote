@@ -21,7 +21,7 @@
     <div class="max-w-2xl mx-auto mt-6 px-6 break-words">
 
         <p class="flex justify-between text-gray-400 font-mono text-xs">
-            <span>Poll type - {{ $poll->type }}</span>
+            <span>Votes: {{ $poll->nVoted() }} | Poll type: <span class="underline">{{ ucfirst($poll->type) }}</span></span>
             <span title="{{ $poll->created_at }}">{{ $poll->created_at->diffForHumans() }}</span>
         </p>
 
