@@ -151,7 +151,7 @@
             </form>
 
             @if(Auth::user()->is_admin || Auth::user()->is_owner)
-                <form method="POST" action="{{ route('polls.destroy', $poll->uuid) }}" class="max-w-2xl mx-auto mt-2 px-6" >
+                <form method="POST" action="{{ route('polls.destroy', $poll->uuid) }}" class="max-w-2xl mx-auto mt-2 mb-8 px-6" >
                     <p class="text-gray-400 font-mono text-xs mx-auto mb-2 mt-4">Admin action</p>
                     @csrf
                     @method('DELETE')
@@ -183,7 +183,7 @@
                 </form>
             @endif
 
-            <form method="POST" action="{{ route('polls.destroy', $poll->uuid) }}" class="max-w-2xl mx-auto mt-2 px-6" >
+            <form method="POST" action="{{ route('polls.destroy', $poll->uuid) }}" class="max-w-2xl mx-auto mt-2 mb-8 px-6" >
                 @csrf
                 @method('DELETE')
 
