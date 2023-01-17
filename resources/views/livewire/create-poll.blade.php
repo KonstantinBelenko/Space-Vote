@@ -30,10 +30,13 @@
             <label for="type" class="block text-gray-200 text-sm font-bold mb-2">Who can See / Vote?</label>
 
             <div class="flex flex-col">
-                <div class="flex items center mb-2">
+                <div class="flex items-center mb-2 overflow-x-auto">
 
                     <input wire:model="type" type="radio" name="type" id="anarchy" value="anarchy" class="mr-2">
                     <label for="anarchy" class="text-gray-200 text-sm font-bold">Anarchy</label>
+
+                    <input wire:model="type" type="radio" name="type" id="private" value="private" class="mr-2 ml-4">
+                    <label for="private" class="text-gray-200 text-sm font-bold">Private</label>
 
                     <input wire:model="type" type="radio" name="type" id="public" value="public" class="mr-2 ml-4">
                     <label for="public" class="text-gray-200 text-sm font-bold">Public</label>

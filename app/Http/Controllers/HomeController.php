@@ -30,6 +30,12 @@ class HomeController extends Controller
             });
         }
 
+        // Remove private polls
+        $all_posts = $all_posts->filter(function ($poll) {
+            // Remove private polls using poll table 'type'
+            return $poll->type != 'private';
+        });
+
 
         return view('welcome', [
             'polls' => $all_posts,

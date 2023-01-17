@@ -119,12 +119,31 @@
 
                         </div>
                     @endforeach
-                    {{--<p class="text-gray-400 font-mono text-xs mb-2">You voted</p>
-                    <div class="font-xl flex justify-center bg-gray-900 border-2 border-white rounded-xl w-full py-2 px-1 text-white transition-all duration-300">
-                        {{ $poll->userAnswer(auth()->user())->text}}
-                    </div>--}}
+
                 @endif
             @endif
+
+            {{-- Share button --}}
+            <script>
+                function share() {
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Share the poll',
+                            url: window.location.href
+                        }).then(() => {
+                            console.log('Thanks for sharing!');
+                        })
+                            .catch(console.error);
+                    } else {
+                        // fallback
+                    }
+                }
+            </script>
+            <div>
+                <p class="text-gray-400 font-mono text-xs mb-2 underline">
+                    <button onclick="share()" class="underline">Share</button>
+                </p>
+            </div>
 
         </div>
     </div>
