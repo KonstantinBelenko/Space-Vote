@@ -60,8 +60,9 @@
 
                         <p class="text-gray-400 font-mono text-xs mb-2">You already voted</p>
                         @foreach($poll->answers()->get() as $key => $answer)
-                            <div class="w-full mb-4">
-
+                            <form method="POST" action="{{ route('polls.vote', $poll) }}" class="w-full mb-4">
+                                @csrf
+                                
                                 {{-- Voting blocks (highting the one the user voted for --}}
                                 @if($answer->text == $poll->answers()->where('id', $userVote)->first()->text)
 
@@ -77,7 +78,7 @@
 
                                 @endif
 
-                            </div>
+                            </form>
                         @endforeach
 
                     @endif
