@@ -7,6 +7,8 @@
                     <a href="{{ url('/dashboard') }}" class="text-sm text-gray-500 font-mono">Dashboard</a>
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-gray-500 font-mono">Log in</a>
+                    /
+                    <a href="{{ route('register') }}" class="text-sm text-gray-500 font-mono">Register</a>
                 @endauth
             </div>
         @endif
