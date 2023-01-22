@@ -12,6 +12,7 @@ class ShowPoll extends Component
     public $poll;
     public $hasVoted;
     public $userVote;
+    public $currentHref;
 
     // initialisation
     public function mount($poll)
@@ -25,6 +26,9 @@ class ShowPoll extends Component
         if ($this->hasVoted) {
             $this->userVote = Cookie::get('poll_' . $this->poll->uuid);
         }
+
+        // Get the current URL
+        $this->currentHref = url()->current();
     }
 
     public function vote(int $answer_id)

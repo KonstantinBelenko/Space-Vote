@@ -9,13 +9,10 @@
     @endif
 
     @if( $poll->nVoted() > 0 )
-        <div wire:poll.750ms class="text-white">
+        <div class="text-white">
             <livewire:votes-chart :poll="$poll" />
         </div>
     @endif
-
-
-
 
     {{-- Display poll title --}}
     <div class="max-w-2xl mx-auto mt-6 px-6 break-words">
@@ -62,7 +59,7 @@
                         @foreach($poll->answers()->get() as $key => $answer)
                             <form method="POST" action="{{ route('polls.vote', $poll) }}" class="w-full mb-4">
                                 @csrf
-                                
+
                                 {{-- Voting blocks (highting the one the user voted for --}}
                                 @if($answer->text == $poll->answers()->where('id', $userVote)->first()->text)
 
@@ -141,13 +138,39 @@
                 }
             </script>
             <div>
-                <p class="text-gray-400 font-mono text-xs mb-2 underline">
+                <p class="text-gray-400 font-mono text-xs mb-2 underline flex justify-between">
                     <button onclick="share()" class="underline">Share</button>
+                    <button onclick="qr()" class="underline">QR</button>
                 </p>
             </div>
 
         </div>
     </div>
+
+    {{-- QR Code modal --}}
+    <div id="modal-bg" class="top-0 absolute w-full h-full backdrop-blur-sm transition-all duration-500"></div>
+    <div id="qr-code" class="absolute flex justify-center items-center w-fit h-fit p-6 bg-white mx-auto left-0 right-0 top-20 bottom-0 rounded-md">
+        <a href="{{ 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='.$currentHref }}" target="_blank">
+            <img id="qr-code" src={{ 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='.$currentHref }} />
+        </a>
+    </div>
+    <script>
+
+        // Set modal-bg to display none on load & on click
+        document.getElementById('modal-bg').style.display = 'none';
+        document.getElementById('qr-code').style.display = 'none';
+
+        document.getElementById('modal-bg').addEventListener('click', function() {
+            document.getElementById('modal-bg').style.display = 'none';
+            document.getElementById('qr-code').style.display = 'none';
+        });
+
+        function qr() {
+            document.getElementById('modal-bg').style.display = 'block';
+            document.getElementById('qr-code').style.display = 'block';
+        }
+
+    </script>
 
     {{-- Button to delete poll if user is the creator --}}
     @auth()
