@@ -161,8 +161,8 @@
     <script>
 
         // Set modal-bg to display none on load & on click
-        // document.getElementById('modal-bg').style.display = 'none';
-        // document.getElementById('qr-code').style.display = 'none';
+        document.getElementById('modal-bg').style.display = 'none';
+        document.getElementById('qr-code').style.display = 'none';
 
         document.getElementById('modal-bg').addEventListener('click', function() {
             document.getElementById('modal-bg').style.display = 'none';
