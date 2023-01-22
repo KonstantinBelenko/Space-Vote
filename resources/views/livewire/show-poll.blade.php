@@ -8,6 +8,10 @@
         </div>
     @endif
 
+    <div class="max-w-2xl mx-auto my-2 px-6 break-words">
+        <p class="flex justify-between text-gray-400 font-mono text-xs">Votes: {{ $poll->nVoted() }}</p>
+    </div>
+
     @if( $poll->nVoted() > 0 )
         <div class="text-white">
             <livewire:votes-chart :poll="$poll" />
@@ -18,7 +22,7 @@
     <div class="max-w-2xl mx-auto mt-6 px-6 break-words">
 
         <p class="flex justify-between text-gray-400 font-mono text-xs">
-            <span>Votes: {{ $poll->nVoted() }} | Poll type: <span class="underline">{{ ucfirst($poll->type) }}</span></span>
+            <span>Poll type: <span class="underline">{{ ucfirst($poll->type) }}</span></span>
             <span title="{{ $poll->created_at }}">{{ $poll->created_at->diffForHumans() }}</span>
         </p>
 
@@ -148,17 +152,17 @@
     </div>
 
     {{-- QR Code modal --}}
-    <div id="modal-bg" class="top-0 absolute w-full h-full"></div>
-    <div id="qr-code" class="absolute flex justify-center items-center w-fit h-fit p-6 bg-white mx-auto left-0 right-0 top-20 bottom-0 rounded-md">
+    <div id="modal-bg" class="top-0 bottom-0 left-0 right-0 absolute w-full h-full bg-black/50"></div>
+    <div id="qr-code" class="absolute top-0 bottom-0 left-0 right-0 mx-auto my-auto w-fit h-fit p-6 bg-white rounded-md ">
         <a href="{{ 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='.$currentHref }}" target="_blank">
-            <img id="qr-code" src={{ 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='.$currentHref }} />
+            <img src={{ 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='.$currentHref }} />
         </a>
     </div>
     <script>
 
         // Set modal-bg to display none on load & on click
-        document.getElementById('modal-bg').style.display = 'none';
-        document.getElementById('qr-code').style.display = 'none';
+        // document.getElementById('modal-bg').style.display = 'none';
+        // document.getElementById('qr-code').style.display = 'none';
 
         document.getElementById('modal-bg').addEventListener('click', function() {
             document.getElementById('modal-bg').style.display = 'none';
