@@ -35,11 +35,8 @@
                     <input wire:model="type" type="radio" name="type" id="anarchy" value="anarchy" class="mr-2">
                     <label for="anarchy" class="text-gray-200 text-sm font-bold">Anarchy</label>
 
-                    <input wire:model="type" type="radio" name="type" id="private" value="private" class="mr-2 ml-4">
-                    <label for="private" class="text-gray-200 text-sm font-bold">Private</label>
-
-                    <input wire:model="type" type="radio" name="type" id="public" value="public" class="mr-2 ml-4">
-                    <label for="public" class="text-gray-200 text-sm font-bold">Public</label>
+                    <input wire:model="type" type="radio" name="type" id="general" value="general" class="mr-2 ml-4">
+                    <label for="general" class="text-gray-200 text-sm font-bold">General</label>
 
                     @if (Auth::user()->is_approved)
                         <input wire:model="type" type="radio" name="type" id="students" value="student" class="mr-2 ml-4">
@@ -50,6 +47,22 @@
                         <input wire:model="type" type="radio" name="type" id="admins" value="admin" class="mr-2 ml-4">
                         <label for="admins" class="text-gray-200 text-sm font-bold">Admins</label>
                     @endif
+
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label for="type" class="block text-gray-200 text-sm font-bold mb-2">Make this poll public?</label>
+
+            <div class="flex flex-col">
+                <div class="flex items-center mb-2 overflow-x-auto">
+
+                    <input wire:model="is_public" type="radio" name="is_public" id="public" value="public" checked class="mr-2">
+                    <label for="public" class="text-gray-200 text-sm font-bold">Public</label>
+
+                    <input wire:model="is_public" type="radio" name="is_public" id="private" value="private" class="mr-2 ml-4">
+                    <label for="private" class="text-gray-200 text-sm font-bold">Private</label>
 
                 </div>
             </div>

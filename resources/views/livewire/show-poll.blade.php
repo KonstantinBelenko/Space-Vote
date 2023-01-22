@@ -148,7 +148,7 @@
     </div>
 
     {{-- QR Code modal --}}
-    <div id="modal-bg" class="top-0 absolute w-full h-full backdrop-blur-sm transition-all duration-500"></div>
+    <div id="modal-bg" class="top-0 absolute w-full h-full"></div>
     <div id="qr-code" class="absolute flex justify-center items-center w-fit h-fit p-6 bg-white mx-auto left-0 right-0 top-20 bottom-0 rounded-md">
         <a href="{{ 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='.$currentHref }}" target="_blank">
             <img id="qr-code" src={{ 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='.$currentHref }} />

@@ -20,6 +20,7 @@ class Poll extends Model
         'is_open',
         'user_id',
         'uuid',
+        'is_public',
     ];
 
     public function hasVoted(?\Illuminate\Contracts\Auth\Authenticatable $user)

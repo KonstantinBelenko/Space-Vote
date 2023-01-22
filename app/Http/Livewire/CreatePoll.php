@@ -12,6 +12,7 @@ class CreatePoll extends Component
     public $title = '';
     public $description = '';
     public $type = 'anarchy';
+    public $is_public = 'public';
     public $answers = [
         [
             'text' => 'Yes',
@@ -51,7 +52,14 @@ class CreatePoll extends Component
             'description' => 'required|max:255',
             'type' => 'required',
             'answers.*.text' => 'required|max:255',
+            'is_public' => 'required',
         ]);
+
+        if ($this->is_public === 'public') {
+            $is_public = true;
+        } else {
+            $is_public = false;
+        }
 
         // Create the poll
         $poll = Poll::create([
@@ -61,6 +69,7 @@ class CreatePoll extends Component
             'is_open' => true,
             'user_id' => auth()->user()->id,
             'uuid' => Str::uuid(),
+            'is_public' => $is_public,
         ]);
 
         // Save poll
