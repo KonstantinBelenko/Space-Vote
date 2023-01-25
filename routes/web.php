@@ -46,8 +46,5 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/testflare', function () {
-        // Trigger flare error
-        $a = 1 / 0;
-    })->name('testflare');
+    Route::get('/testflare/{int}', [\App\Http\Controllers\testflare::class, 'index'])->name('testflare');
 });

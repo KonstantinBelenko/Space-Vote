@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Poll;
 use RakibDevs\Weather\Weather;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
     public function __invoke()
     {
-        $wt = new Weather();
-        $weather = $wt->getCurrentByCity('Barcelona');
-//     $weather = json_decode('{"coord":{"lon":71.5785,"lat":34.008},"weather":[{"id":721,"main":"Haze","description":"haze","icon":"50n"}],"base":"stations","main":{"temp":285.23,"feels_like":283.46,"temp_min":285.23,"temp_max":285.23,"pressure":1019,"humidity":37},"visibility":7000,"wind":{"speed":3.09,"deg":230},"clouds":{"all":1},"dt":1674658230,"sys":{"type":1,"id":7590,"country":"PK","sunrise":1674612922,"sunset":1674650164},"timezone":18000,"id":1168197,"name":"Peshawar","cod":200}');
 
+        $minutes = 60*30;
+        $weather = Cache::remember('weather', $minutes, function () {
+            Log::info('Fetching forecast from OpenWeather');
+            $wt = new Weather();
+            return $wt->getCurrentByCity('Barcelona');
+        });
 
         /* Send welcome view with all polls that are open (paginated), desc order */
 
