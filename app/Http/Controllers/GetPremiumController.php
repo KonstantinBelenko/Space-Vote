@@ -26,7 +26,7 @@ class GetPremiumController extends Controller
     }
 
     public function success(Request $request) {
-        $payment = Mollie::api()->payments()->get($request->paymentId);
+        $payment = Mollie::api()->payments()->get($request->id);
         if ($payment->isPaid()) {
             auth()->user()->update([
                 'premium' => true,
