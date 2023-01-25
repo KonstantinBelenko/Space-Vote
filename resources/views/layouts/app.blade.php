@@ -51,7 +51,7 @@
             }
         </style>
     </head>
-    <body class="{{ auth()->user()->rainbow ? "font-sans antialiased wrapper text-gray-100" : "font-sans antialiased bg-gray-900 text-gray-100" }}">
+    <body class="{{ (auth()->check() && auth()->user()->rainbow) ? "font-sans antialiased wrapper text-gray-100" : "font-sans antialiased bg-gray-900 text-gray-100" }}">
 
         <div class="min-h-screen text-gray-100">
 

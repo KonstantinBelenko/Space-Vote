@@ -41,7 +41,7 @@
 
     </head>
 
-    <body class="{{ auth()->user()->rainbow ? "wrapper antialiased text-gray-100" : 'antialiased bg-gray-900 text-gray-100' }}">
+    <body class="{{ (auth()->check() && auth()->user()->rainbow) ? "wrapper antialiased text-gray-100" : 'antialiased bg-gray-900 text-gray-100' }}">
 
         {{-- Header --}}
         <x-header :weather="$weather" />

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ApiPollController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('mollie', [App\Http\Controllers\GetPremiumController::class, 'webhook'])->name('mollie-webhook');
+
+Route::get('/polls', [ApiPollController::class, 'getAllPolls'])->name('api.test');

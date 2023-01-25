@@ -33,6 +33,11 @@
                         <div class="font-mono text-gray-400 text-xs">Name</div>
                         <p class="text-xl">{{ auth()->user()->name }}</p>
                     </div>
+
+                    <div class="mt-6">
+                        <div class="font-mono text-gray-400 text-xs">API-KEY</div>
+                        <p class="text-xl">{{ auth()->user()->api_key }}</p>
+                    </div>
                 </div>
 
                 {{-- Quit account button --}}

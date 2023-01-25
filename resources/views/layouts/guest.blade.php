@@ -53,7 +53,7 @@
     </head>
     <body class="font-sans antialiased bg-gray-900 text-gray-100">
 
-        <div class="wrapper min-h-screen">
+        <div class="bg-gray-800 min-h-screen">
 
             {{-- Header --}}
             <x-header />
