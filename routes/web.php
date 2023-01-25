@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PollController;
+use Spatie\FlareClient\Flare;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +48,7 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/testflare', function () {
-         throw new \Exception('Test exception');
+        throw new \Exception('Test Flare');
     })->name('testflare');
     Route::get('/testflare/{int}', [\App\Http\Controllers\testflare::class, 'index'])->name('testflare');
 });
