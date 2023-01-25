@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GetPremiumController;
 use App\Http\Controllers\PollController;
 use Spatie\FlareClient\Flare;
 
@@ -33,6 +34,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Vote
     Route::post('/polls/{poll}/vote', [PollController::class, 'vote'])->name('polls.vote');
 
+    // Get premium
+    Route::get('/getpremium', [GetPremiumController::class, 'index'])->name('getpremium');
+    Route::get('/getpremium/success', [GetPremiumController::class, 'success'])->name('getpremium.success');
 });
 
 // This route is public and accessible to everyone
