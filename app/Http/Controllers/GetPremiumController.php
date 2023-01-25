@@ -25,15 +25,8 @@ class GetPremiumController extends Controller
         return redirect($payment->getCheckoutUrl(), 303);
     }
 
-    public function success(Request $request) {
-        dd($request->all());
-        $payment = Mollie::api()->payments()->get($request->paymentId);
-        if ($payment->isPaid()) {
-            auth()->user()->update([
-                'premium' => true,
-            ]);
-            return view('getpremiumsuccess');
-        }
+    public function success() {
+        return view('getpremiumsuccess');
     }
 
     public function webhook(Request $request) {
