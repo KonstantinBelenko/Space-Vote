@@ -36,7 +36,7 @@ class GetPremiumController extends Controller
 
         if ($payment->isPaid()) {
             // Set user to premium
-            $user = auth()->user();
+            $user = \App\Models\User::where('id', auth()->id())->first();
             $user->rainbow = true;
             $user->save();
         }
