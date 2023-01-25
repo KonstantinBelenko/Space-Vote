@@ -33,11 +33,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Vote
     Route::post('/polls/{poll}/vote', [PollController::class, 'vote'])->name('polls.vote');
-
-    // Get premium
-    Route::get('/getpremium', [GetPremiumController::class, 'index'])->name('getpremium');
-    Route::get('/getpremium/success', [GetPremiumController::class, 'success'])->name('getpremium.success');
 });
+
+// Get premium
+Route::get('/getpremium', [GetPremiumController::class, 'index'])->name('getpremium');
+Route::get('/getpremium/success', [GetPremiumController::class, 'success'])->name('getpremium.success');
 
 // This route is public and accessible to everyone
 Route::get('/polls/{poll_uuid}', [PollController::class, 'show'])->name('polls.show');
