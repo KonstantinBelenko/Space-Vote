@@ -46,5 +46,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/testflare', function () {
+         throw new \Exception('Test exception');
+    })->name('testflare');
     Route::get('/testflare/{int}', [\App\Http\Controllers\testflare::class, 'index'])->name('testflare');
 });
