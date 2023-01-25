@@ -1,6 +1,7 @@
 <header class="w-full h-16 p-4 pl-6 flex flex-row justify-between items-center">
     <a href="{{ route('home') }}" class="font-bold text-xl">🌑 Space Vote</a>
-    <div class="flex items-top justify-center items-center py-4 sm:pt-0">
+
+    <div class="flex flex-col items-top justify-center items-center py-4 ">
         @if (Route::has('login'))
             <div class="top-0 right-0 px-6 py-4 block">
                 @auth
@@ -12,5 +13,10 @@
                 @endauth
             </div>
         @endif
+
+        @if(isset($weather))
+            {{ $weather->weather[0]->main }} | {{ $weather->main->temp }}°C
+        @endif
+
     </div>
 </header>

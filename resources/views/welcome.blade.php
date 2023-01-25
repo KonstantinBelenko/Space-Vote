@@ -13,12 +13,10 @@
     <body class="antialiased bg-gray-900 text-gray-100">
 
         {{-- Header --}}
-        <x-header />
+        <x-header :weather="$weather" />
 
         {{-- Content --}}
         <div class="max-w-full mx-auto">
-
-{{--            {{ $weather }}--}}
 
             {{-- List Polls --}}
             <div class="max-w-full mx-auto mt-12 mb-12">
