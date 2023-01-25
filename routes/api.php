@@ -18,4 +18,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/webhooks/mollie', 'App\Http\Controllers\GetPremiumController@handle')->name('webhooks.mollie');
+Route::post('mollie', App\Http\Controllers\GetPremiumController::class, 'webhook')->name('mollie-webhook');
