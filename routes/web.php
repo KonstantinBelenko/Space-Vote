@@ -45,4 +45,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/testflare', function () {
+        throw new Exception('😎 Test Flare');
+    });
 });

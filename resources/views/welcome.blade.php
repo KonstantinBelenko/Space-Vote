@@ -18,6 +18,8 @@
         {{-- Content --}}
         <div class="max-w-full mx-auto">
 
+{{--            {{ $weather }}--}}
+
             {{-- List Polls --}}
             <div class="max-w-full mx-auto mt-12 mb-12">
                 <div class="mt-4">

@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Poll;
+use RakibDevs\Weather\Weather;
 
 class HomeController extends Controller
 {
     public function __invoke()
     {
+        $wt = new Weather();
+        $weather = $wt->getGeoByCity('Barcelona');
+
         /* Send welcome view with all polls that are open (paginated), desc order */
 
         $all_posts = Poll::where('is_open', true)->orderBy('created_at', 'desc')->paginate(10);
@@ -43,6 +47,7 @@ class HomeController extends Controller
 
         return view('welcome', [
             'polls' => $all_posts,
+//            'weather' => $weather,
         ]);
     }
 }
