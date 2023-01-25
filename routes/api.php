@@ -21,5 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('mollie', [App\Http\Controllers\GetPremiumController::class, 'webhook'])->name('mollie-webhook');
 
-Route::get('/polls', [ApiPollController::class, 'getAllPolls'])->name('api.test');
+Route::get('/polls', [ApiPollController::class, 'getAllPolls'])->name('api.polls');
+Route::get('/polls/{poll_uuid}', [ApiPollController::class, 'getPollById'])->name('api.polls');
 Route::post('/polls/create', [ApiPollController::class, 'createPoll'])->name('api.polls.create');

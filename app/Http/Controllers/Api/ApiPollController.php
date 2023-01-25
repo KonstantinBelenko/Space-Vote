@@ -65,6 +65,39 @@ class ApiPollController extends Controller
         return response()->json($polls);
     }
 
+    public function getPollById(Request $request) {
+
+        if (!$this->validateApiKey($request->header('X-API-KEY'))) {
+            return response()->json([
+                'error' => 'Invalid API key',
+            ], 401);
+        }
+
+        $poll = \App\Models\Poll::where('uuid', $request->uuid)->first();
+
+        if ($poll === null) {
+            return response()->json([
+                'error' => 'Poll not found',
+            ], 404);
+        }
+
+        return response()->json([
+            'title' => $poll->title,
+            'description' => $poll->description,
+            'uuid' => $poll->uuid,
+            'type' => $poll->type,
+            'created_at' => $poll->created_at,
+            'is_open' => $poll->is_open,
+            'nVotes' => $poll->nVoted(),
+            'answers' => $poll->answers->map(function ($answer) {
+                return [
+                    'answer' => $answer->text,
+                    'nVotes' => $answer->nVoted(),
+                ];
+            }),
+        ]);
+    }
+
     public function createPoll(Request $request) {
 
         if (!$this->validateApiKey($request->header('X-API-KEY'))) {
