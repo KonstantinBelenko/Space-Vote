@@ -133,6 +133,7 @@ class ApiPollController extends Controller
             'is_open' => true,
             'is_public' => $request->is_public,
             'user_id' => $user->id,
+            'uuid' => \Illuminate\Support\Str::uuid(),
         ]);
         $poll->save();
 
